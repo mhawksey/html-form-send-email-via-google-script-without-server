@@ -2,6 +2,10 @@
 
 A ***Step-by-Step Example*** of using an **HTML Form** to send a "Contact Us" Message via Email without a Backend Server using a Google Script - No PHP, Python, Ruby, Java, Node.js etc.
 
+This tutorial has been *forked* from an existing tutorial by [Sean McKenna](https://github.com/dwyl/html-form-send-email-via-google-script-without-server). Thanks for sharing Sean!
+
+> ***Important:*** This solution publishes a form as a Google Apps Script Webapp. Webapps currently ***cannot*** be embedded in other webpages other than on Google Sites. 
+
 ## Why?
 
 We needed a way of sending an email from from a "*static*" HTML page
@@ -32,11 +36,8 @@ in your email inbox (*messy ... yuck*!)
 
 ### 1. Make a Copy of the Sample Spreadsheet
 
-> Sample: https://docs.google.com/spreadsheets/d/1UZdTuBtfmr-p0yQL6pwL5IrIWLsNLRX05Q-qP6nFu8U/
+> Sample: https://docs.google.com/spreadsheets/d/1Kbd8CXZk-hCkdEXsQE70t7AnKYZ-uiLrOaZHrx8gZcE/copy
 
-In Google Sheets, Click "**File**" > "**Make a copy**..."
-
-![1-make-copy](https://cloud.githubusercontent.com/assets/194400/10559679/d0056a0c-74ee-11e5-9fdc-c12e13684a46.png)
 
 This should give you something like this:
 
@@ -51,7 +52,7 @@ Open the **Script editor...** by clicking "**Tools**" > "**Script editor...**"
 
 ![2 script-editor](https://cloud.githubusercontent.com/assets/194400/10559732/8db2b9f6-74ef-11e5-8bf2-de286f079929.png)
 
-Here's a *snapshot* of the script you need (*at this point in the exercise*): [google-script-just-email.js](https://raw.githubusercontent.com/nelsonic/html-form-send-email-via-google-script-without-server/1d1c6727f69dec64a6b7f6bd6ff0dd72d0374210/google-script-just-email.js)
+Here's a *snapshot* of the script you need (*at this point in the exercise*): [script.gs](https://github.com/mhawksey/html-form-send-email-via-google-script-without-server/blob/master/script.gs)
 
 ### 3. Set the `TO_ADDRESS` in the Script
 
@@ -62,7 +63,13 @@ In the editor window you should expect to see:
 Change the value of the `TO_ADDRESS` to which ever email you want to receive
 the contact form message.
 
-### 4. Save a *New Version* of your Script
+
+### 4. Create your *basic* HTML Form
+
+Using the template in `index.html` in the Script Editor,
+create your own html file with the basic form. (*save the file*)
+
+### 5. Save a *New Version* of your Script
 
 It's not immediately *obvious* but you have to *click* on "*Manage Versions...*"
 
@@ -72,7 +79,7 @@ Then *create* your new version:
 
 ![20 google-script-save-new-version](https://cloud.githubusercontent.com/assets/194400/10558250/53d21d5e-74c1-11e5-88c5-7bc2d8ce6228.png)
 
-### 5. Publish the *Updated* Script as a Web App
+### 6. Publish the *Updated* Script as a Web App
 
 ![20 a-publish](https://cloud.githubusercontent.com/assets/194400/10558288/50980aa8-74c2-11e5-8576-72084a564779.png)
 
@@ -80,27 +87,17 @@ Select the *latest* project version to deploy:
 
 ![21 deploy-new-version](https://cloud.githubusercontent.com/assets/194400/10558251/570a5428-74c1-11e5-8ced-5dd26d3de3c4.png)
 
-### 6. Authorize the Script to Send Emails
+### 7. Authorize the Script to Send Emails
 
 ![5 auth-required](https://cloud.githubusercontent.com/assets/194400/10560412/89d3fb0c-7502-11e5-81ce-fb239bf545b2.png)
 
 ![5-allow-sending-emails](https://cloud.githubusercontent.com/assets/194400/10560416/a86a26ae-7502-11e5-9add-d5081d409af4.png)
 
-Copy the web app URL to your clip board / note pad.
-Then Click "OK".
-
 ![22 1-deploy-as-web-app](https://cloud.githubusercontent.com/assets/194400/10558255/6eec31e2-74c1-11e5-9c07-cea6209526df.png)
 
+Open the Current web app url into a new browser tab.
+Then Click "OK".
 
-### 7. Create your *basic* HTML Form
-
-Using the template in `index.html` in this repo,
-create your own html file with the basic form. (*save the file*)
-
-> Remember to change the Form `action` URL to the one you copied in
-the previous step:
-
-![7-html-form](https://cloud.githubusercontent.com/assets/194400/10560470/e2d7fcb6-7503-11e5-9d9a-3771423e51fa.png)
 
 ### 8. Open the HTML Form (*page*) in your Browser
 
@@ -109,7 +106,7 @@ Fill in some sample data in the HTML Form:
 ![html form](https://cloud.githubusercontent.com/assets/194400/10560494/674b64c4-7504-11e5-801a-b537d276f671.png)
 
 Submit the form. You should see a confirmation that it was sent:
-![form sent](https://cloud.githubusercontent.com/assets/194400/10560501/8f605dd4-7504-11e5-8cd7-06d768beba4d.png)
+
 
 ### 9. Check the email inbox for the address you set
 
@@ -124,23 +121,40 @@ Open the inbox for the email address you set in **Step 3** (*above*)
 
 We are going to keep this ***Super Lean*** by using [**PURE CSS**](http://purecss.io/start/)
 for our Style (*fix the "ugly" HTML Form in step 8*).
-And `submit` the form using [**JQuery** "***AJAX***"](http://api.jquery.com/jquery.ajax/) to keep the person
+And `submit` the form using [**Google Apps Script** ***Client-to-Server Communication***](https://developers.google.com/apps-script/guides/html/communication) to keep the person
 on your page/site (*avoid "ugly" response page*)
 
-### 10. Submit the Form using **JavaScript** "***AJAX***"
+### 10. Submit the Form using **Google Apps Script** "***Client-to-Server Communication***"
 
-To *prevent* the page from changing to the `JSON` response/result
-we need to submit the form using ***AJAX***.
+To *prevent* the page from changing when submitted the index.html file includes a `preventFormSubmit` function.
 
-Update your `index.html` to include the following JavaScript file at the *end* of your file
-(*before the closing `</body>` tag)
+Update your `index.html` to include the following JavaScript file in the *`<head>`* of your file
 
-```js
-<script data-cfasync="false" type="text/javascript"
-src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
-```
+    <script>
+      // from https://developers.google.com/apps-script/guides/html/communication#forms
+      // Prevent forms from submitting.
+      function preventFormSubmit() {
+        var forms = document.querySelectorAll('form');
+        for (var i = 0; i < forms.length; i++) {
+          forms[i].addEventListener('submit', function(event) {
+            event.preventDefault();
+          });
+        }
+      }
+      window.addEventListener('load', preventFormSubmit);
 
-This will now display a "Thank You" *message* when the form is submitted:
+
+      function handleFormSubmit(formObject) {
+        google.script.run.withSuccessHandler(displayResult).record_data(formObject);
+      }
+      function displayResult(e) {
+        console.log(e);
+        document.getElementById('thankyou_message').style.display = 'block';
+        document.getElementById('gform').style.display = 'none';
+      }
+      <script>
+
+Now when the form is submitted the form data is sent to our `record_data()` function in the `script.gs` file. When it finishes the `displayResult()` hides the form and will now display a "Thank You" *message* when the form is submitted:
 
 ![thankyou message](https://cloud.githubusercontent.com/assets/194400/10561147/4086a89a-7517-11e5-840d-7f490353e225.png)
 
@@ -178,8 +192,8 @@ first step, but we can do better.
 
 ![record_data example](https://cloud.githubusercontent.com/assets/194400/10581613/8b4f9ad4-767b-11e5-90cc-962a9d6acc91.png)
 
-This will record the data received from the `POST` as a *row* in the spreadsheet.  
-See: [**google-apps-script.js**](https://github.com/nelsonic/html-form-send-email-via-google-script-without-server/blob/master/google-apps-script.js) for the full code you can *copy-paste*.
+This will record the data received from the form submission as a *row* in the spreadsheet.  
+See: [script.gs](https://github.com/mhawksey/html-form-send-email-via-google-script-without-server/blob/master/script.gs) for the full code you can *copy-paste*.
 
 
 ### 14. Run the Setup Script
@@ -200,11 +214,6 @@ Follow Steps 4, 5 & 6 to save a new version and ***re-publish*** the script.
 ### 17 Confirm the Data was Inserted into the Spreadsheet
 
 ![17-confirm-data-inserted](https://cloud.githubusercontent.com/assets/194400/10582676/eb8af5d8-7680-11e5-92bb-30dd08d2d7b3.png)
-
-
-# *Want more*?
-
-If you want us to take this tutorial further, [***please let us know***!](https://github.com/nelsonic/html-form-send-email-via-google-script-without-server/issues)
 
 
 ## Add your own fields!
