@@ -1,19 +1,19 @@
 # Send Email from a custom HTML Form using Google Apps Script!!
 
-A ***Step-by-Step Example*** of using an **HTML Form** to send a "Contact Us" Message via Email without a Backend Server using a Google Script - No PHP, Python, Ruby, Java, Node.js etc.
+A ***Step-by-Step Example*** of using an **HTML Form** to send a "Contact Us" Message via Email  using a Google Script - Free tool - No hosting, PHP, Python, Ruby, Java, Node.js etc.
 
-This tutorial has been *forked* from an existing tutorial by [Sean McKenna](https://github.com/dwyl/html-form-send-email-via-google-script-without-server). Thanks for sharing Sean!
+This tutorial has been *forked* from an [existing tutorial by @dwyl & team](https://github.com/dwyl/html-form-send-email-via-google-script-without-server) with contributions by Sean McKenna. Thanks for sharing!
 
 > ***Important:*** This solution publishes a form as a Google Apps Script Webapp. Webapps currently ***cannot*** be embedded in other webpages other than on Google Sites. 
 
 ## Why?
 
 We needed a way of sending an email from from a "*static*" HTML page
-when you don't (*want* to) *have* a *server*.
+when you don't have a web hosting server.
 
 ### *Key Advantages*
 
-+ No "*Backend*" to Deploy/Maintain/Pay for
++ No web hosting to Deploy/Maintain/Pay for
 + ***Fully Customisabe*** - every aspect is customisable!
 + Email *sent via* ***Google Mail*** which is ***Whitelisted Everywhere*** (*high deliverability success*)
 + **Collect/Store** any **form data** in a ***Spreadsheet*** for easy viewing  
