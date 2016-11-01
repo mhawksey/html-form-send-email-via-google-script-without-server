@@ -6,6 +6,8 @@ This tutorial has been *forked* from an [existing tutorial by @dwyl & team](http
 
 > ***Important:*** This solution publishes a form as a Google Apps Script Webapp. Webapps currently ***cannot*** be embedded in other webpages other than on Google Sites. 
 
+> ***Update:*** There is an undocumented option to permit Webapps to be embedded as `<iframe>` by using `setXFrameOptionsMode()`. To use uncomment `.setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)` in script.gs.
+
 ## Why?
 
 We needed a way of sending an email from from a "*static*" HTML page

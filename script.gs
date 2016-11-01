@@ -13,7 +13,9 @@ function doGet(e) {
     /*MailApp.sendEmail(TO_ADDRESS, "Contact Form Submitted",
                       JSON.stringify(e.parameters));*/
     return HtmlService.createTemplateFromFile('index.html')
-                      .evaluate().setTitle('Contact Form Example');
+                      .evaluate()
+					  // .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL) // uncomment to permit iframing
+					  .setTitle('Contact Form Example');
     /*record_data(e);
     return ContentService    // return json success results
           .createTextOutput(
