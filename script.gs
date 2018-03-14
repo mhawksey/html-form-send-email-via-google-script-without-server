@@ -67,7 +67,7 @@ function record_data(formObject) {
     // more efficient to set values as [][] array than individually
     sheet.getRange(nextRow, 1, 1, row.length).setValues([row]);
     
-    MailApp.sendEmail(TO_ADDRESS, "Contact Form Submitted",
+    MailApp.sendEmail(formObject['email'], "Contact Form Submitted",
                       JSON.stringify(formObject));
   }
   catch(error) {
