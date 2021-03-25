@@ -16,7 +16,7 @@ when you don't have a web hosting server.
 ### *Key Advantages*
 
 + No web hosting to Deploy/Maintain/Pay for
-+ ***Fully Customisabe*** - every aspect is customisable!
++ ***Fully Customisable*** - every aspect is customisable!
 + Email *sent via* ***Google Mail*** which is ***Whitelisted Everywhere*** (*high deliverability success*)
 + **Collect/Store** any **form data** in a ***Spreadsheet*** for easy viewing  
 (*perfect if you need to share it with non-technical people*)
